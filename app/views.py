@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from app.forms import *
 
+# Create your views here.
 def root(request):
-    return render(request, 'root.html')
+    return render(request, "root.html")
