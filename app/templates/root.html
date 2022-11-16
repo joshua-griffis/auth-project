@@ -1,15 +1,18 @@
+{% load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "styles.css" %}">
     <title>Root</title>
 </head>
 <body>
     <h1>Root</h1>
     <a href="/"><button>root</button></a>
     <a href="/login"><button>login</button></a>
-    <a href="/sign_up"><button>sign up</button></a>
+    <a href="/sign_up"><button>sign up</button></a><br>
+    <span>Hewwo {{request.user}}, you're logged in!<a href="{% url 'logout' %}"><button>logout</button></a></span>
 </body>
 </html>

@@ -3,8 +3,10 @@ from django.contrib import admin
 from django.urls import path
 
 urlpatterns = [
-    path("", root),
-    path("login", login, name="login"),
-    path("sign_up", sign_up, name="sign"),
+    path("", root, name="root"),
+
+    path("sign_up", sign_up, name="sign"), 
+    path("login", login_user, name="login"),
+    path('logout', logout_user, name="logout"),
     path("admin/", admin.site.urls),
 ]

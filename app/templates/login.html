@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,17 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
+    <link rel="stylesheet" href="{% static "styles.css" %}">
 </head>
 <body>
     <h1>Login</h1>
-    <a href="/"><button>root</button></a>
+    
     <form action="" method="POST">
         {%csrf_token%}
-        <input placeholder={{form.username.label}} {{ form.username }}<br>
-        <input placeholder={{form.password1.label}} {{ form.password1 }}<br>
-     
+        <input type="text" name="username" placeholder="Username"><br>
+        <input type="password" name="password" placeholder="Password">
+        <input type="submit" name="Create User" value="Login"><br>
+        {%for message in messages%}
+        <div class="error">{{message}}</div>
+        {%endfor%}
 
-        <input type="submit" name="Create User" value="Login">
+       
     </form> 
     
     <p>Dont have an account? <a href="/sign_up">Sign Up!</a></p>
