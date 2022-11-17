@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
     <title>login</title>
     <link rel="stylesheet" href="{% static "styles.css" %}">
 </head>
@@ -13,15 +16,18 @@
     
     <form action="" method="POST">
         {%csrf_token%}
-        <input type="text" name="username" placeholder="Username"><br>
-        <input type="password" name="password" placeholder="Password">
-        <input type="submit" name="Create User" value="Login"><br>
+        <input class="textbox" type="text" name="username" placeholder="Username.."><br>
+        <input class="textbox" type="password" name="password" placeholder="Password.."><br>
+        <input class="submitbtn" type="submit" name="Create User" value="Login"><br>
         {%for message in messages%}
-        <div class="error">{{message}}</div>
+            <div class="error">{{message}}</div>
+        {% if message != None %}
+            <a class="textbox" type="button" onclick="alert('too bad :(')">forgot your password?</a>
+        {%endif%}
         {%endfor%}
 
-        <p>Dont have an account?</p>
-        <a href="/sign_up">Sign Up!</a>
+        <p>Dont have an account?</p> <a href="/sign_up">Sign Up!</a>
+        
     </form> 
     
     

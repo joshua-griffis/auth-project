@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static "styles.css" %}">
     <title>sign up</title>
 </head>
@@ -13,16 +16,16 @@
    
     <form action="" method="POST">
         {%csrf_token%}
-        <input placeholder="{{form.username.label}}"{{ form.username }}<br>
-        <input placeholder="{{form.email.label}}" {{ form.email }}<br>
-        <input placeholder="{{form.password1.label}}"{{ form.password1 }}<br>
-        <input placeholder="Comfirm Password" {{ form.password2 }}<br>
-        <input type="submit" name="Create User" value="Create Account">
+        <input class="textbox" placeholder="{{form.username.label}}.."{{ form.username }}<br>
+        <input class="textbox" placeholder="{{form.email.label}}.." {{ form.email }}<br>
+        <input class="textbox" placeholder="{{form.password1.label}}.."{{ form.password1 }}<br>
+        <input class="textbox" placeholder="Comfirm Password.." {{ form.password2 }}<br>
+        <input class="submitbtn" type="submit" name="Create User" value="Create Account">
 
         <p>{{form.errors}}</p>
     </form> 
      
-    <p>Already have an account? <a href="/login">Login!</a></p>
+    <p>Already have an account?</p> <a href="/login">Login!</a>
 
 </body>
 </html>
