@@ -6,17 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static "styles.css" %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com"> 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
     <title>Root</title>
 </head>
 <body>
-    <h1>Root</h1>
+    <h1>Character Creater</h1>
+    {% block content%}
     <span>Hewwo {{request.user}}, you're logged in!<a href="{% url 'logout' %}">logout</a></span>
-    <input type="text" name="create">
+    <a href="/creating">create character</a>
     {%for character in all%}
-    {{character}}
+    <p>{{character.id}} -- {{character.name}} the {{character.ethnicity}} {{character.occupation}} from {{character.origin}}. Abilities: {{character.powers}}</p>
+        
     {%endfor%}
+    {%endblock%}
 </body>
 </html>
+  

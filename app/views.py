@@ -9,7 +9,24 @@ from app.models import *
 # Create your views here.
 @login_required(login_url='login')
 def root(request):
+    
     return render(request, "root.html", {"all": viewing_all()})
+
+@login_required(login_url='login')
+def create(request):
+    form = CreateCharForm(request.GET)
+    if form.is_valid():
+        name = form.cleaned_data["name"]
+        origin = form.cleaned_data["origin"]
+        powers = form.cleaned_data["powers"]
+        occupation = form.cleaned_data["occupation"]
+        ethnicity = form.cleaned_data["ethnicity"]
+        content = {"char": creating(name, origin, powers, occupation, ethnicity)}
+        return render(request, "create.html", content), redirect('root')
+    else:
+        return render(request, "create.html")
+  
+
 
 @auth_user
 def sign_up(request):

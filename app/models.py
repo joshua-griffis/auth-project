@@ -9,10 +9,11 @@ class Character(models.Model):
     occupation = models.TextField()
     ethnicity = models.TextField()
   
-def creating(nam, ori, pow, occ, rac):
-    x = Character(name=nam, origin=ori, powers=pow, occupation=occ, ethnicity=rac)
+def creating(nam, ori, pow, occ, eth):
+    x = Character(name=nam, origin=ori, powers=pow, occupation=occ, ethnicity=eth)
     x.save()
     return x
+
 
 def viewing_all():
     liszt = [] 

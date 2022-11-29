@@ -6,3 +6,11 @@ class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ["username", "email", "password1", "password2"]
+
+
+class CreateCharForm(forms.Form):
+    name = forms.CharField()
+    origin = forms.CharField()
+    powers = forms.CharField()
+    occupation = forms.CharField()
+    ethnicity = forms.CharField()
