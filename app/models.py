@@ -1,16 +1,13 @@
 from django.db import models
-from dataclasses import dataclass
 import random
 # Create your models here.
 
-
-
 class Character(models.Model):
-  name: models.TextField()
-  origin: models.TextField() 
-  powers: models.TextField()
-  occupation: models.TextField()
-  ethnicity: models.TextField()
+    name = models.TextField()
+    origin = models.TextField() 
+    powers = models.TextField()
+    occupation = models.TextField()
+    ethnicity = models.TextField()
   
 def creating(nam, ori, pow, occ, rac):
     x = Character(name=nam, origin=ori, powers=pow, occupation=occ, ethnicity=rac)
@@ -18,41 +15,38 @@ def creating(nam, ori, pow, occ, rac):
     return x
 
 def viewing_all():
-  for item in Character.objects.all():
-    string = (f'- {item.name} the {item.ethnicity} {item.occupation} from {item.origin}. Abilities include: {item.powers}')
-  return string
+    liszt = [] 
+    for character in Character.objects.all():
+        liszt.append(character)
+    return liszt
 
-def searching_name(Franz: Character):
-  user_input = input('Name: ')
-  count = 0
-  for item in liszt:
-    if user_input == item.name:
-      count +=1
-      print(f'{item.name} the {item.ethnicity} {item.occupation} from {item.origin}. Abilities include: {item.powers}')
-  if count ==0:
-    print('Character not found')
+def searching(name):
+    for character in viewing_all():
+        if character.name == name:
+            return character
 
-def updating(Franz: Character):
-  user_input = input('Name: ')
-  count = 0
-  for item in liszt:
-    if user_input == item.name:
-      count +=1
-      name = user_input 
-      origin = input('Place of Origin?: ')
-      occupation = input('Occupation?: ')
-      ethnicity = input('ethnicity / Species?: ')
-      powers = input('Abilities?: ')
-      item.name = name
-      item.origin = origin
-      item.occupation = occupation
-      item.ethnicity = ethnicity
-      item.powers = powers
-  if count == 0:
-    print('Character not found')
+def updating(nam, category, content):
+    character = searching(nam)
+    if category == "name":
+        character.name = content
+        character.save()
+    elif category == "origin":
+        character.origin = content
+        character.save()
+    elif category == "powers":
+        character.powers = content
+        character.save()
+    elif category == "occupation":
+        character.occupation = content
+        character.save()
+    elif category == "ethnicity":
+        character.ethnicity = content
+        character.save()
     
-def deleting(character):
-  ...
+def deleting(name):
+    character = searching(name)
+    character.delete()
+    return character
 
 def random_character():
     random_name = random.randint(0, 11)
@@ -109,7 +103,7 @@ def random_character():
     elif random_origin == 12:
       random_origin = 'The Edge of the Universe'
 
-    random_occupation = random.randint(0, 11)
+    random_occupation = random.randint(0, 12)
     if random_occupation == 0:
       random_occupation = 'Gunslinger'
     elif random_occupation == 1:

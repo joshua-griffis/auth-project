@@ -5,10 +5,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from app.decorators import auth_user
 from app.forms import *
+from app.models import *
 # Create your views here.
 @login_required(login_url='login')
 def root(request):
-    return render(request, "root.html")
+    return render(request, "root.html", {"all": viewing_all()})
 
 @auth_user
 def sign_up(request):

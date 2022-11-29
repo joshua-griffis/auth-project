@@ -13,6 +13,10 @@
 </head>
 <body>
     <h1>Root</h1>
-    <span>Hewwo {{request.user}}, you're logged in!<a class="submitbtn" href="{% url 'logout' %}">logout</a></span>
+    <span>Hewwo {{request.user}}, you're logged in!<a href="{% url 'logout' %}">logout</a></span>
+    <input type="text" name="create">
+    {%for character in all%}
+    {{character}}
+    {%endfor%}
 </body>
 </html>
