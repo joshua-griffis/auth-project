@@ -9,15 +9,24 @@
     <title>Root</title>
 </head>
 <body>
-    <h1>Character Creater</h1>
-    {% block content%}
-    <span>Hewwo {{request.user}}, you're logged in!<a href="{% url 'logout' %}">logout</a></span>
-    <a href="/creating">create character</a>
-    {%for character in all%}
-    <p>{{character.id}} -- {{character.name}} the {{character.ethnicity}} {{character.occupation}} from {{character.origin}}. Abilities: {{character.powers}}</p>
+    <div class="body">
+        <h1>Character Creater</h1>
+       
+        <span>Hewwo {{request.user}}, you're logged in!<a href="{% url 'logout' %}">logout</a></span>
+        <a href="/creating">Create Character</a><a href="/randomize">Randomize Character</a>
         
-    {%endfor%}
+    </div>
+    
+    {%for character in all%}
+    <div class="body">
+        <p>{{character.id}} -- <strong>{{character.name}}</strong> the {{character.ethnicity}} {{character.occupation}} from {{character.origin}}. Abilities: {{character.powers}}</p>
+        <a href="{% url 'update_char' character.id %}">Update</a> 
+        <a class="del" href="{% url 'delete_char' character.id %}">Delete</a> 
+    </div>
+    {%endfor%} 
+    {% block content%}
     {%endblock%}
+   
 </body>
 </html>
   

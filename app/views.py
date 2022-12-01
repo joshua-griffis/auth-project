@@ -14,19 +14,45 @@ def root(request):
 
 @login_required(login_url='login')
 def create(request):
-    form = CreateCharForm(request.GET)
-    if form.is_valid():
-        name = form.cleaned_data["name"]
-        origin = form.cleaned_data["origin"]
-        powers = form.cleaned_data["powers"]
-        occupation = form.cleaned_data["occupation"]
-        ethnicity = form.cleaned_data["ethnicity"]
-        content = {"char": creating(name, origin, powers, occupation, ethnicity)}
-        return render(request, "create.html", content), redirect('root')
+    form = CreateCharForm()
+    if request.method == 'POST':
+        form = CreateCharForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data["name"]
+            origin = form.cleaned_data["origin"]
+            powers = form.cleaned_data["powers"]
+            occupation = form.cleaned_data["occupation"]
+            ethnicity = form.cleaned_data["ethnicity"]
+            content = {"form": form, "char": creating(name, origin, powers, occupation, ethnicity)}
+            return redirect('root')
+        return render(request, "create.html", content)
     else:
-        return render(request, "create.html")
-  
+        return render(request, "create.html", {'form':form})
 
+@login_required(login_url='login')
+def randomize(request):
+    random_char = random_character()
+    form = CreateCharForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect('root')
+    return render(request, 'randomize.html', {"random_char": random_char, "form": form})
+     
+  
+@login_required(login_url='login')
+def update(request, char_id):
+    character = Character.objects.get(pk=char_id)
+    form = CreateCharForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect('root')
+    return render(request, 'update.html', {"character": character, "form": form})
+
+@login_required(login_url='login')
+def delete(request, char_id):
+    character = Character.objects.get(pk=char_id)
+    character.delete()
+    return redirect('root')
 
 @auth_user
 def sign_up(request):

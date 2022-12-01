@@ -10,10 +10,11 @@ html{
     justify-content: center;
     height: 100%;
 }
-body{
+.body{
     background-color: crimson;
     margin-top: auto;
     margin-bottom: auto;
+    margin: 1em;
     padding: 1em;
     border-radius: 1em;
     position: relative;
@@ -22,7 +23,7 @@ body{
     flex-direction: column;
     height: fit-content;
     width: fit-content;
-    box-shadow: 0em 0 10em crimson;
+    box-shadow: 0 0 10em crimson;
 }
 
 .submitbtn, .textbox{
@@ -49,10 +50,17 @@ body{
 
 input.textbox {
     backdrop-filter: blur(10px);
+    width: fit-content;
     box-shadow: 0 0 1em rgb(255, 21, 68);
 }
 
 a{
     color: white;
     text-decoration: None;
+    transition: .5s;
+}
+
+a:hover{
+    text-shadow: 0 0 1px white;
+    transition: .5s;
 }

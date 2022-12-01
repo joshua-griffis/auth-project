@@ -3,11 +3,11 @@ import random
 # Create your models here.
 
 class Character(models.Model):
-    name = models.TextField()
-    origin = models.TextField() 
-    powers = models.TextField()
-    occupation = models.TextField()
-    ethnicity = models.TextField()
+    name = models.CharField(max_length=100)
+    origin = models.CharField(max_length=100) 
+    powers = models.CharField(max_length=100)
+    occupation = models.CharField(max_length=100)
+    ethnicity = models.CharField(max_length=100)
   
 def creating(nam, ori, pow, occ, eth):
     x = Character(name=nam, origin=ori, powers=pow, occupation=occ, ethnicity=eth)
@@ -44,10 +44,6 @@ def updating(nam, category, content):
         character.ethnicity = content
         character.save()
     
-def deleting(name):
-    character = searching(name)
-    character.delete()
-    return character
 
 def random_character():
     random_name = random.randint(0, 11)
@@ -185,9 +181,15 @@ def random_character():
       random_powers = 'the Amaterasu, Telekinetic Combustion of Black Flames'
     elif random_powers == 11:
       random_powers = 'Granting any wish as long as an appropriate sacrifice is made to counter balance the wish'
-       
-    x = Character(name=random_name, origin=random_origin, powers=random_powers, occupation=random_occupation, ethnicity=random_ethnicity)
-    x.save()
-    return x
+    
+    liszt = {
+      "name": random_name, 
+      "origin": random_origin, 
+      "powers": random_powers, 
+      "occupation": random_occupation, 
+      "ethnicity": random_ethnicity
+    }
+    
+    return liszt
     
 

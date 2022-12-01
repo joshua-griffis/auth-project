@@ -1,0 +1,14 @@
+{% extends 'root.html'%}
+{% block content%}
+<form class="body" action="" method="POST">
+    <h3>Upadate {{character.name}}?</h3>
+    {%csrf_token%}
+    <input class="textbox" type="textbox" name="name" placeholder="Name" value="{{character.name}}">
+    <input class="textbox" type="textbox" name="origin" placeholder="Origin" value="{{character.origin}}">
+    <input class="textbox" type="textbox" name="powers" placeholder="Powers" value="{{character.powers}}">
+    <input class="textbox" type="textbox" name="occupation" placeholder="Occupation" value="{{character.occupation}}">
+    <input class="textbox" type="textbox" name="ethnicity" placeholder="Ethnicity" value="{{character.ethnicity}}">
+    <input class="submitbtn" type="submit" name="update chracter" value="Update"><br>
+    <a href="/">back</a>
+</form> 
+{% endblock%}

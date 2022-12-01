@@ -1,14 +1,10 @@
-{% extends 'root.html' %} {% block content %}
-<form action="" method="GET">
-    <h3>Create a Chatacter!</h3>
+{% extends 'root.html'%}
+{% block content%}
+<form class="body" action="" method="POST">
+    <h3>Create a Character</h3>
     {%csrf_token%}
-    <input class="textbox" type="text" name="name" placeholder="Name"><br>
-    <input class="textbox" type="text" name="origin" placeholder="Origin"><br>
-    <input class="textbox" type="text" name="powers" placeholder="Powers"><br>
-    <input class="textbox" type="text" name="occupation" placeholder="Occupation"><br>
-    <input class="textbox" type="text" name="ethnicity" placeholder="Ethnicity"><br>
-    <input class="submitbtn" type="submit" name="create chraacter" value="Create"><br>
+    {{form}}
+    <input class="submitbtn" type="submit" name="create chracter" value="Create"><br>
     <a href="/">back</a>
-    
 </form> 
-{% endblock %}
+{% endblock%}
