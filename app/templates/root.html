@@ -18,11 +18,11 @@
     </div>
     
     {%for character in all%}
-    <div class="body">
-        <p>{{character.id}} -- <strong>{{character.name}}</strong> the {{character.ethnicity}} {{character.occupation}} from {{character.origin}}. Abilities: {{character.powers}}</p>
-        <a href="{% url 'update_char' character.id %}">Update</a> 
-        <a class="del" href="{% url 'delete_char' character.id %}">Delete</a> 
-    </div>
+        <div class="body">
+            <p>{{character.id}} -- <strong>{{character.name}}</strong> the {{character.ethnicity}} {{character.occupation}} from {{character.origin}}. Abilities: {{character.powers}}</p>
+            <a href="{% url 'update_char' character.id %}">Update</a> 
+            <a class="del" href="{% url 'delete_char' character.id %}">Delete</a> 
+        </div>
     {%endfor%} 
     {% block content%}
     {%endblock%}

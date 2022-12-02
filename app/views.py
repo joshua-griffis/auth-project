@@ -10,7 +10,7 @@ from app.models import *
 @login_required(login_url='login')
 def root(request):
     
-    return render(request, "root.html", {"all": viewing_all()})
+    return render(request, "root.html", {"all": Character.objects.filter(user=request.user)})
 
 @login_required(login_url='login')
 def create(request):
@@ -23,30 +23,51 @@ def create(request):
             powers = form.cleaned_data["powers"]
             occupation = form.cleaned_data["occupation"]
             ethnicity = form.cleaned_data["ethnicity"]
-            content = {"form": form, "char": creating(name, origin, powers, occupation, ethnicity)}
+            creating(request.user, name, origin, powers, occupation, ethnicity)
             return redirect('root')
-        return render(request, "create.html", content)
-    else:
-        return render(request, "create.html", {'form':form})
+    return render(request, "create.html", {'form':form})
+        
 
 @login_required(login_url='login')
 def randomize(request):
     random_char = random_character()
-    form = CreateCharForm(request.POST)
-    if form.is_valid():
-        form.save()
-        return redirect('root')
+    form = CreateCharForm()
+    if request.method == 'POST':
+        form = CreateCharForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data["name"]
+            origin = form.cleaned_data["origin"]
+            powers = form.cleaned_data["powers"]
+            occupation = form.cleaned_data["occupation"]
+            ethnicity = form.cleaned_data["ethnicity"]
+            creating(request.user, name, origin, powers, occupation, ethnicity)
+            form.save()
+            return redirect('root')
     return render(request, 'randomize.html', {"random_char": random_char, "form": form})
      
   
 @login_required(login_url='login')
 def update(request, char_id):
     character = Character.objects.get(pk=char_id)
-    form = CreateCharForm(request.POST)
-    if form.is_valid():
-        form.save()
-        return redirect('root')
-    return render(request, 'update.html', {"character": character, "form": form})
+    form = CreateCharForm()
+    if request.method == 'POST':
+        form = CreateCharForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data["name"]
+            origin = form.cleaned_data["origin"]
+            powers = form.cleaned_data["powers"]
+            occupation = form.cleaned_data["occupation"]
+            ethnicity = form.cleaned_data["ethnicity"]
+            character.user = request.user
+            character.name = name
+            character.origin = origin
+            character.powers = powers
+            character.occupation = occupation
+            character.ethnicity = ethnicity
+            character.save()
+            form.save()
+            return redirect('root')
+    return render(request, 'update.html', {"form": form, "character": character})
 
 @login_required(login_url='login')
 def delete(request, char_id):

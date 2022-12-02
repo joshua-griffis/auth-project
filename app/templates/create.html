@@ -3,7 +3,11 @@
 <form class="body" action="" method="POST">
     <h3>Create a Character</h3>
     {%csrf_token%}
-    {{form}}
+    <input class="textbox" placeholder="{{form.name.label}}" {{form.name}}
+    <input class="textbox" placeholder="{{form.origin.label}}" {{form.origin}}
+    <input class="textbox" placeholder="{{form.powers.label}}" {{form.powers}}
+    <input class="textbox" placeholder="{{form.occupation.label}}" {{form.occupation}}
+    <input class="textbox" placeholder="{{form.ethnicity.label}}" {{form.ethnicity}}
     <input class="submitbtn" type="submit" name="create chracter" value="Create"><br>
     <a href="/">back</a>
 </form> 

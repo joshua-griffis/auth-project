@@ -48,7 +48,7 @@ html{
     size: 1em;
 }
 
-input.textbox {
+.textbox {
     backdrop-filter: blur(10px);
     width: fit-content;
     box-shadow: 0 0 1em rgb(255, 21, 68);
@@ -61,6 +61,6 @@ a{
 }
 
 a:hover{
-    text-shadow: 0 0 1px white;
+    text-shadow: 0px 0px 10px white;
     transition: .5s;
 }

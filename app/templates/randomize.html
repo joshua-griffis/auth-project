@@ -3,11 +3,11 @@
 <form class="body" action="" method="POST">
     <h3>Create a Random Chatacter!</h3>
     {%csrf_token%}
-    <input class="textbox" type="textbox" name="name" placeholder="Name" value="{{random_char.name}}">
-    <input class="textbox" type="textbox" name="origin" placeholder="Origin" value="{{random_char.origin}}">
-    <input class="textbox" type="textbox" name="powers" placeholder="Powers" value="{{random_char.powers}}">
-    <input class="textbox" type="textbox" name="occupation" placeholder="Occupation" value="{{random_char.occupation}}">
-    <input class="textbox" type="textbox" name="ethnicity" placeholder="Ethnicity" value="{{random_char.ethnicity}}">
+    <input class="textbox" placeholder="{{form.name.label}}" value="{{random_char.name}}" {{form.name}}
+    <input class="textbox" placeholder="{{form.origin.label}}" value="{{random_char.origin}}" {{form.origin}}
+    <input class="textbox" placeholder="{{form.powers.label}}" value="{{random_char.powers}}" {{form.powers}}
+    <input class="textbox" placeholder="{{form.occupation.label}}" value="{{random_char.occupation}}" {{form.occupation}}
+    <input class="textbox" placeholder="{{form.ethnicity.label}}" value="{{random_char.ethnicity}}" {{form.ethnicity}}
     <input class="submitbtn" type="submit" name="create chracter" value="Create"><br>
     <a href="/">back</a>
     
